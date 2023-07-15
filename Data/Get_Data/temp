@@ -1,0 +1,17 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://weather.com/weather/monthly/l/0f33b2879c4bf88b28c66d9c21e0658ebf8832d6df964432ccf14f81e5d1c119"
+
+# دریافت صفحه وب
+response = requests.get(url)
+html = response.content
+
+# استخراج اسکرول بار با BeautifulSoup
+soup = BeautifulSoup(html, "html.parser")
+
+# پیدا کردن المان اسکرول بار و استخراج واحد مورد نظر
+unit_selector = soup.find("section", {"data-testid": "unitSelectorSection"})
+selected_unit = unit_selector.find("li", {"class": "UnitSelector--UnitSelectorActiveTab--1q2d_"}).text.strip()
+
+print("واحد انتخاب شده:", selected_unit)
