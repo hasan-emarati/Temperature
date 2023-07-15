@@ -23,7 +23,8 @@ select_element['value'] = option_element['value']
 
 temp_elements = soup.find_all("span", {"data-testid": "TemperatureValue"})
 temperatures = [temp.text.strip() for temp in temp_elements]
-# Date_Time = soup.find_all("span" , {""})
-print(temperatures)
+DateTime_elements = soup.find_all("span" , {"data-testid": "CalendarDateCell"})
+Date_Time = [Date.text.strip() for Date in DateTime_elements]
+print(Date_Time , temperatures)
 # for temp in temperatures:
     # print(temp)
